@@ -12,6 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as DonorRouteImport } from './routes/donor'
+import { Route as HomeRouteImport } from './routes/home'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ReceiverRouteImport } from './routes/receiver'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as WorkspaceRouteImport } from './routes/workspace'
 
 const IndexRoute = IndexRouteImport.update({
@@ -29,6 +33,26 @@ const DonorRoute = DonorRouteImport.update({
   path: '/donor',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HomeRoute = HomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReceiverRoute = ReceiverRouteImport.update({
+  id: '/receiver',
+  path: '/receiver',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WorkspaceRoute = WorkspaceRouteImport.update({
   id: '/workspace',
   path: '/workspace',
@@ -39,12 +63,20 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
   '/donor': typeof DonorRoute
+  '/home': typeof HomeRoute
+  '/login': typeof LoginRoute
+  '/receiver': typeof ReceiverRoute
+  '/signup': typeof SignupRoute
   '/workspace': typeof WorkspaceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
   '/donor': typeof DonorRoute
+  '/home': typeof HomeRoute
+  '/login': typeof LoginRoute
+  '/receiver': typeof ReceiverRoute
+  '/signup': typeof SignupRoute
   '/workspace': typeof WorkspaceRoute
 }
 export interface FileRoutesById {
@@ -52,20 +84,53 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
   '/donor': typeof DonorRoute
+  '/home': typeof HomeRoute
+  '/login': typeof LoginRoute
+  '/receiver': typeof ReceiverRoute
+  '/signup': typeof SignupRoute
   '/workspace': typeof WorkspaceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/donor' | '/workspace'
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/donor'
+    | '/home'
+    | '/login'
+    | '/receiver'
+    | '/signup'
+    | '/workspace'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/donor' | '/workspace'
-  id: '__root__' | '/' | '/dashboard' | '/donor' | '/workspace'
+  to:
+    | '/'
+    | '/dashboard'
+    | '/donor'
+    | '/home'
+    | '/login'
+    | '/receiver'
+    | '/signup'
+    | '/workspace'
+  id:
+    | '__root__'
+    | '/'
+    | '/dashboard'
+    | '/donor'
+    | '/home'
+    | '/login'
+    | '/receiver'
+    | '/signup'
+    | '/workspace'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRoute: typeof DashboardRoute
   DonorRoute: typeof DonorRoute
+  HomeRoute: typeof HomeRoute
+  LoginRoute: typeof LoginRoute
+  ReceiverRoute: typeof ReceiverRoute
+  SignupRoute: typeof SignupRoute
   WorkspaceRoute: typeof WorkspaceRoute
 }
 
@@ -92,6 +157,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DonorRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/home': {
+      id: '/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof HomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/receiver': {
+      id: '/receiver'
+      path: '/receiver'
+      fullPath: '/receiver'
+      preLoaderRoute: typeof ReceiverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/workspace': {
       id: '/workspace'
       path: '/workspace'
@@ -106,6 +199,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRoute: DashboardRoute,
   DonorRoute: DonorRoute,
+  HomeRoute: HomeRoute,
+  LoginRoute: LoginRoute,
+  ReceiverRoute: ReceiverRoute,
+  SignupRoute: SignupRoute,
   WorkspaceRoute: WorkspaceRoute,
 }
 export const routeTree = rootRouteImport

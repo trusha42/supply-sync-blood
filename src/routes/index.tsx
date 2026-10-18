@@ -48,8 +48,18 @@ function Index() {
             One verified view of blood stock across hospitals and blood banks, with AI that sees shortages coming and alerts the people who can help.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link to="/dashboard" className="btn btn-dark">View live dashboard <ArrowRight className="h-4 w-4" /></Link>
-            <Link to="/donor" className="btn btn-outline">Become a donor</Link>
+            <Link to="/login" className="btn btn-primary">
+            Login
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+            
+            <Link to="/signup" className="btn btn-outline">
+            Sign Up
+            </Link>
+          
+            <Link to="/donor" className="btn btn-outline">
+             Become a donor
+             </Link>
           </div>
         </div>
         <RequestBloodCard />
@@ -111,7 +121,14 @@ function Index() {
       <Section id="portals" eyebrow="Portals" title="One bridge. Three ways to make a difference.">
         <div className="grid gap-5 md:grid-cols-3">
           {[
-            { i: HeartPulse, l: "Receiver portal", t: "I need blood", d: "Share your requirement and let AI find the safest, nearest match in minutes.", b: "Request blood", href: "/#request" },
+            {
+              i: HeartPulse,
+              l: "Receiver portal",
+              t: "I need blood",
+              d: "Submit a blood requirement and track available matches.",
+              b: "Open receiver portal",
+              to: "/receiver",
+            },
             { i: HandHeart, l: "Volunteer portal", t: "I want to help", d: "Register once, stay updated, and donate when someone nearby needs you most.", b: "Become a donor", to: "/donor", hl: true },
             { i: Building2, l: "Blood bank & hospital", t: "I manage inventory", d: "Manage live inventory, verify requests, and coordinate supply across your network.", b: "Open workspace", to: "/workspace" },
           ].map((p) => (
