@@ -18,6 +18,7 @@ import {
 import { CountUp } from "@/components/count-up";
 import { ForecastChart } from "@/components/forecast-chart";
 import { DemoBadge } from "@/components/site";
+import { BENCHMARK, SAFETY_NOTICE } from "@/lib/ai-config";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -264,8 +265,8 @@ function Index() {
           </div>
           <div className="space-y-6">
             {[
-              { l: "PyTorch inference", v: 120, w: "100%", c: "bg-band-foreground/35" },
-              { l: "TensorRT inference", v: 18, w: "15%", c: "bg-primary" },
+              { l: BENCHMARK.baselineLabel, v: BENCHMARK.baselineMs, w: "100%", c: "bg-band-foreground/35" },
+              { l: BENCHMARK.optimizedLabel, v: BENCHMARK.optimizedMs, w: `${Math.max(4, Math.round((BENCHMARK.optimizedMs / BENCHMARK.baselineMs) * 100))}%`, c: "bg-primary" },
             ].map((b) => (
               <div key={b.l}>
                 <div className="flex justify-between text-sm font-semibold">
@@ -282,6 +283,16 @@ function Index() {
               about 6.7× faster
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Powered by */}
+      <section aria-label="Powered by" className="border-b border-border">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-8 gap-y-3 px-4 py-6 text-sm">
+          <span className="font-semibold uppercase tracking-wider text-muted-foreground">Powered by</span>
+          <span className="rounded-full bg-card px-4 py-1.5 font-heading font-bold shadow-sm">Nebius Token Factory</span>
+          <span className="rounded-full bg-card px-4 py-1.5 font-heading font-bold shadow-sm">NVIDIA Nemotron</span>
+          <span className="text-xs text-muted-foreground">{SAFETY_NOTICE}</span>
         </div>
       </section>
 
