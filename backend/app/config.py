@@ -13,6 +13,10 @@ class Settings(BaseSettings):
     jwt_secret: str
     frontend_origin: str = "  http://localhost:8080/"
     cookie_secure: bool = False
+    
+    nebius_api_key: str
+    nebius_model: str
+    nebius_base_url: str = "https://api.tokenfactory.nebius.com/v1/"
 
     model_config = SettingsConfigDict(
         env_file=Path(__file__).resolve().parents[1] / ".env",

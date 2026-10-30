@@ -6,3 +6,6 @@ pydantic-settings
 email-validator
 pwdlib[argon2]
 PyJWT
+langchain>=1,<2
+langchain-nebius
+langchain-openai

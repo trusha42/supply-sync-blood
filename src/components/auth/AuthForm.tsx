@@ -48,9 +48,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
 
   const locked = lockedUntil !== null;
 
-  const secondsLeft = lockedUntil
-    ? Math.max(0, Math.ceil((lockedUntil - now) / 1000))
-    : 0;
+  const secondsLeft = lockedUntil ? Math.max(0, Math.ceil((lockedUntil - now) / 1000)) : 0;
 
   const hours = Math.floor(secondsLeft / 3600);
   const minutes = Math.floor((secondsLeft % 3600) / 60);
@@ -89,10 +87,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
       });
 
       if (isSignup) {
-        setSuccess(
-          result.message ||
-            "Account created. You can now log in.",
-        );
+        setSuccess(result.message || "Account created. You can now log in.");
         setPassword("");
         setConfirmation("");
       } else {
@@ -100,20 +95,13 @@ export default function AuthForm({ mode }: AuthFormProps) {
       }
     } catch (caught) {
       if (caught instanceof AuthApiError) {
-        const timestamp = caught.data.locked_until
-          ? Date.parse(caught.data.locked_until)
-          : NaN;
+        const timestamp = caught.data.locked_until ? Date.parse(caught.data.locked_until) : NaN;
 
-        if (
-          !isSignup &&
-          Number.isFinite(timestamp) &&
-          timestamp > Date.now()
-        ) {
+        if (!isSignup && Number.isFinite(timestamp) && timestamp > Date.now()) {
           setNow(Date.now());
           setLockedUntil(timestamp);
           setError(
-            caught.data.message ||
-              "Too many failed login attempts. Try again after 72 hours.",
+            caught.data.message || "Too many failed login attempts. Try again after 72 hours.",
           );
         } else {
           const remaining = caught.data.attempts_remaining;
@@ -126,9 +114,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
           );
         }
       } else {
-        setError(
-          "Could not connect to the server. Please try again.",
-        );
+        setError("Could not connect to the server. Please try again.");
       }
     } finally {
       setBusy(false);
@@ -146,10 +132,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
             <HeartPulse className="h-7 w-7" aria-hidden="true" />
           </span>
 
-          <h1
-            id={`${mode}-title`}
-            className="mt-4 text-3xl font-extrabold"
-          >
+          <h1 id={`${mode}-title`} className="mt-4 text-3xl font-extrabold">
             {isSignup ? "Join BloodBridge" : "Welcome back"}
           </h1>
 
@@ -171,8 +154,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
 
         {locked && (
           <p className="mb-5 text-sm text-muted-foreground">
-            Time remaining: {hours}h {minutes}m {seconds}s.
-            {" "}This account is temporarily locked.
+            Time remaining: {hours}h {minutes}m {seconds}s. This account is temporarily locked.
           </p>
         )}
 
@@ -190,9 +172,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <fieldset disabled={busy || locked} className="space-y-5">
-            <legend className="sr-only">
-              {isSignup ? "Create an account" : "Login details"}
-            </legend>
+            <legend className="sr-only">{isSignup ? "Create an account" : "Login details"}</legend>
 
             {isSignup && (
               <div>
@@ -270,6 +250,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
                 <label htmlFor="signup-confirmation" className="text-sm font-semibold">
                   Confirm password
                 </label>
+
                 <input
                   id="signup-confirmation"
                   name="confirmation"
@@ -289,9 +270,8 @@ export default function AuthForm({ mode }: AuthFormProps) {
               disabled={busy || locked}
               className="btn btn-primary w-full disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {busy && (
-                <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-              )}
+              {busy && <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />}
+
               {busy
                 ? "Please wait..."
                 : locked

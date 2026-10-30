@@ -5,7 +5,6 @@ import UserMenu from "@/components/auth/UserMenu";
 
 const landingLinks = [
   { href: "/#how", label: "How it works" },
-  { href: "/#portals", label: "Portals" },
   { href: "/#forecast", label: "Forecasting" },
   { href: "/#trust", label: "Trust" },
 ];
@@ -19,10 +18,7 @@ const appLinks = [
 ] as const;
 
 function isApplicationPath(pathname: string) {
-  return appLinks.some(
-    ({ to }) =>
-      pathname === to || pathname.startsWith(`${to}/`),
-  );
+  return appLinks.some(({ to }) => pathname === to || pathname.startsWith(`${to}/`));
 }
 
 export function Logo() {
@@ -33,17 +29,10 @@ export function Logo() {
   const destination = isApplicationPath(pathname) ? "/home" : "/";
 
   return (
-    <Link
-      to={destination}
-      className="flex items-center gap-2 font-heading text-lg font-extrabold"
-    >
+    <Link to={destination} className="flex items-center gap-2 font-heading text-lg font-extrabold">
       <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-coral-soft text-primary">
-        <Droplet
-          className="h-5 w-5 fill-current"
-          aria-hidden="true"
-        />
+        <Droplet className="h-5 w-5 fill-current" aria-hidden="true" />
       </span>
-
       BloodBridge AI
     </Link>
   );
@@ -65,19 +54,14 @@ function ThemeToggle() {
     setDark(nextDark);
     document.documentElement.classList.toggle("dark", nextDark);
 
-    localStorage.setItem(
-      "bb-theme",
-      nextDark ? "dark" : "light",
-    );
+    localStorage.setItem("bb-theme", nextDark ? "dark" : "light");
   }
 
   return (
     <button
       type="button"
       onClick={toggle}
-      aria-label={
-        dark ? "Switch to light mode" : "Switch to dark mode"
-      }
+      aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
       className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-border bg-card transition-colors hover:bg-accent"
     >
       {dark ? (
@@ -113,9 +97,7 @@ export function SiteHeader() {
           <button
             type="button"
             className="grid h-10 w-10 place-items-center rounded-full border border-border bg-card lg:hidden"
-            aria-label={
-              open ? "Close navigation menu" : "Open navigation menu"
-            }
+            aria-label={open ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={open}
             aria-controls="mobile-navigation"
             onClick={() => setOpen((value) => !value)}
@@ -165,18 +147,11 @@ export function SiteHeader() {
             )}
           </nav>
 
-          <div className="flex flex-wrap items-center justify-end gap-3">
-            {!isAppPage && (
-              <a
-                href="/#request"
-                className="btn btn-primary hidden sm:inline-flex"
-              >
-                Find blood
-              </a>
-            )}
-
-            <UserMenu />
-          </div>
+          {isAppPage && (
+            <div className="flex flex-wrap items-center justify-end gap-3">
+              <UserMenu />
+            </div>
+          )}
         </div>
       </div>
 
@@ -215,11 +190,7 @@ export function SiteHeader() {
                   {item.label}
                 </a>
               ))}
-              <a
-                href="/#request"
-                onClick={() => setOpen(false)}
-                className="btn btn-primary mt-2"
-              >
+              <a href="/#request" onClick={() => setOpen(false)} className="btn btn-primary mt-2">
                 Find blood
               </a>
             </>
@@ -236,10 +207,7 @@ export function SiteFooter() {
       <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-10 md:flex-row md:items-center md:justify-between">
         <Logo />
 
-        <nav
-          aria-label="Project links"
-          className="flex flex-wrap gap-5 text-sm font-medium"
-        >
+        <nav aria-label="Project links" className="flex flex-wrap gap-5 text-sm font-medium">
           <a
             href="https://devpost.com"
             target="_blank"
